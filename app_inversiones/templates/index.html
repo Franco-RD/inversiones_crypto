@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +14,14 @@
     <header class="container">
         <h1>myCrypto</h1>
     </header>
-    
+
 
     <section class="container">
-        
+
         <h2>Movimientos</h2>
 
         <div class="float_left">
-            <table id="investments_table" >
+            <table id="investments_table">
                 <tr>
                     <th>Fecha</th>
                     <th>Hora</th>
@@ -28,7 +29,7 @@
                     <th>Cantidad</th>
                     <th>To</th>
                     <th>Cantidad</th>
-                </tr>           
+                </tr>
             </table>
         </div>
 
@@ -38,61 +39,68 @@
             <h4>V. de compra: </h4>
             <h4>V. actual: </h4>
         </article>
-
-        <nav class="float_right">
-            <ul>
-                <li><a href="#" role="button" id="btn_nuevo">Nuevo</a></li>
-            </ul>
-        </nav>
+        
+        <a href="#" role="button" id="btn_nuevo">Nuevo</a>
 
         <article id="form_detail" class="inactive">
             <form id="exchange_form" method="post">
-                <div class="grid">
-                    <label for="from">From: </label>
-                    <select name="from" id="from">
-                        <option value="EUR">EUR</option>
-                        <option value="BTC">BTC</option>
-                        <option value="ETH">ETH</option>
-                        <option value="USDT">USDT</option>
-                        <option value="BNB">BNB</option>
-                        <option value="XRP">XRP</option>
-                        <option value="ADA">ADA</option>
-                        <option value="SOL">SOL</option>
-                        <option value="DOT">DOT</option>
-                        <option value="MATIC">MATIC</option>
-                    </select>
 
-                    <label for="to">To: </label>
-                    <select name="to" id="to">
-                        <option value="EUR">EUR</option>
-                        <option value="BTC">BTC</option>
-                        <option value="ETH">ETH</option>
-                        <option value="USDT">USDT</option>
-                        <option value="BNB">BNB</option>
-                        <option value="XRP">XRP</option>
-                        <option value="ADA">ADA</option>
-                        <option value="SOL">SOL</option>
-                        <option value="DOT">DOT</option>
-                        <option value="MATIC">MATIC</option>
-                    </select>
+                <div class="grid">
+                    <div class="grid_item_left">
+                        <label for="from">From: </label>
+                        <select name="from" id="from">
+                            <option value="EUR">EUR</option>
+                            <option value="BTC">BTC</option>
+                            <option value="ETH">ETH</option>
+                            <option value="USDT">USDT</option>
+                            <option value="BNB">BNB</option>
+                            <option value="XRP">XRP</option>
+                            <option value="ADA">ADA</option>
+                            <option value="SOL">SOL</option>
+                            <option value="DOT">DOT</option>
+                            <option value="MATIC">MATIC</option>
+                        </select>
+                    </div>
+                    <div class="grid_item_right">
+                        <label for="to">To: </label>
+                        <select name="to" id="to">
+                            <option value="EUR">EUR</option>
+                            <option value="BTC">BTC</option>
+                            <option value="ETH">ETH</option>
+                            <option value="USDT">USDT</option>
+                            <option value="BNB">BNB</option>
+                            <option value="XRP">XRP</option>
+                            <option value="ADA">ADA</option>
+                            <option value="SOL">SOL</option>
+                            <option value="DOT">DOT</option>
+                            <option value="MATIC">MATIC</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="grid">
-                    <label for="quantity_from">Q: </label>
-                    <input type="number" name="quantity_from" id="quantity_from" placeholder="Cuanto deseas gastar">
-                    <label>Q: </label>
-                    <label id="quantity_to">asd</label>
+                    <div class="grid_item_left">
+                        <label for="quantity_from">Q: </label>
+                        <input type="number" name="quantity_from" id="quantity_from" placeholder="Cuanto deseas gastar">
+                    </div>
+                    <div class="grid_item_right">
+                        <label>Q: </label>
+                        <label id="quantity_to">asd</label>
+                    </div>
+                </div>
+
+                <div class="grid_item_right">
                     <label id="pu">P.U.: </label>
-                    
                 </div>
 
                 <div class="grid">
                     <button id="btn_cerrar">Cerrar</button>
                     <button id="btn_confirmar">Confirmar</button>
-                </div> 
+                </div>
+
             </form>
         </article>
-        
+
     </section>
 
 
@@ -100,4 +108,5 @@
         &copy; 2024 - Franco Romano Data - Todos los derechos reservados
     </footer>
 </body>
+
 </html>

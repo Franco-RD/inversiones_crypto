@@ -55,6 +55,21 @@ h4{
     display: none;  
 }
 
+.grid_item_left{
+    display: flex;
+    justify-content: left;
+    align-items: left;    
+}
+
+.grid_item_right{
+    display: flex;
+    justify-content: right;
+    align-items: left;    
+}
+
+#to, #from{
+    max-width: 150px;
+}
 
 /* Hacer que el formulario sea una ventana emergente
 #investments_table, #form_detail {
