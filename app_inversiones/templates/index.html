@@ -32,14 +32,67 @@
             </table>
         </div>
 
-        <div class="float_right">
-            <h2>Hola</h2>
-            <nav>
-                <ul>
-                    <li><a href="#" role="button" id="btn_crear" class="float_left">Nuevo</a></li>
-                </ul>
-            </nav>
-        </div>
+        <article class="article_float_right">
+            <h4>Invertido: </h4>
+            <h4>Recuperando: </h4>
+            <h4>V. de compra: </h4>
+            <h4>V. actual: </h4>
+        </article>
+
+        <nav class="float_right">
+            <ul>
+                <li><a href="#" role="button" id="btn_nuevo">Nuevo</a></li>
+            </ul>
+        </nav>
+
+        <article id="form_detail" class="inactive">
+            <form id="exchange_form" method="post">
+                <div class="grid">
+                    <label for="from">From: </label>
+                    <select name="from" id="from">
+                        <option value="EUR">EUR</option>
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                        <option value="USDT">USDT</option>
+                        <option value="BNB">BNB</option>
+                        <option value="XRP">XRP</option>
+                        <option value="ADA">ADA</option>
+                        <option value="SOL">SOL</option>
+                        <option value="DOT">DOT</option>
+                        <option value="MATIC">MATIC</option>
+                    </select>
+
+                    <label for="to">To: </label>
+                    <select name="to" id="to">
+                        <option value="EUR">EUR</option>
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                        <option value="USDT">USDT</option>
+                        <option value="BNB">BNB</option>
+                        <option value="XRP">XRP</option>
+                        <option value="ADA">ADA</option>
+                        <option value="SOL">SOL</option>
+                        <option value="DOT">DOT</option>
+                        <option value="MATIC">MATIC</option>
+                    </select>
+                </div>
+
+                <div class="grid">
+                    <label for="quantity_from">Q: </label>
+                    <input type="number" name="quantity_from" id="quantity_from" placeholder="Cuanto deseas gastar">
+                    <label>Q: </label>
+                    <label id="quantity_to">asd</label>
+                    <label id="pu">P.U.: </label>
+                    
+                </div>
+
+                <div class="grid">
+                    <button id="btn_cerrar">Cerrar</button>
+                    <button id="btn_confirmar">Confirmar</button>
+                </div> 
+            </form>
+        </article>
+        
     </section>
 
 

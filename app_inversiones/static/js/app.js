@@ -42,7 +42,7 @@ function peticion_movimientos_handler(){        //Las variables que vamos declar
             }
 
         }else{
-            alert("Aqui se ha producido un error en la consulta")
+            alert("Se ha producido un error en la consulta")
         }
     }                     
 }
@@ -50,7 +50,29 @@ function peticion_movimientos_handler(){        //Las variables que vamos declar
 
 
 
+
+//Abrir el formulario con el boton nuevo
+function viewForm(event){ 
+    document.getElementById("form_detail").style.display="block"; 
+}
+
+
+//Cerrar el formulario con el boton cerrar
+function hideForm(event){  
+    event.preventDefault()  //evita que el boton cerrar envie un POST
+    document.getElementById("form_detail").style.display="none";  
+}
+
+
 window.onload = function(){
+
+    //Mostrar formulario
+    let nuevo = document.getElementById("btn_nuevo");
+    nuevo.addEventListener("click", viewForm)
+
+    //Ocultar formulario
+    let cerrar = document.getElementById("btn_cerrar");
+    cerrar.addEventListener("click", hideForm)
 
     //Mostrar la tabla en carga de pantalla
     peticion_movimientos.open("GET", "http://127.0.0.1:5000/api/v1.0/movimientos", true);  

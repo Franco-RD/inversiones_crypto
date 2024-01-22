@@ -10,6 +10,7 @@ import sqlite3
 def index():
     return render_template("index.html")
 
+
 @app.route(f"/api/{VERSION}/movimientos")
 def all_movements():
     try:
@@ -29,3 +30,7 @@ def all_movements():
             }
         ), HTTPStatus.BAD_REQUEST
     
+
+@app.route(f"/api/{VERSION}/tasa/<moneda_from>/<moneda_to>")
+def get_tasa(moneda_from, moneda_to):
+    pass
