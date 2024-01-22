@@ -1,7 +1,7 @@
 from app_inversiones.conexion import Conexion
 
 def select_all():
-    conectar = Conexion("select * from movements order by date desc;")
+    conectar = Conexion("select * from investments;")
     filas = conectar.res.fetchall()  #res.fetchall() si trae los datos de las columnas nada mas en un a lista de tuplas (1, 2024-01-01, Nomina Enero, 1500)
     columnas = conectar.res.description  #Nombres de columnas en lista de tuplas  (id,0000) (date,0000) (concept,0000) (quantity,0000)
 
@@ -17,4 +17,4 @@ def select_all():
         lista_diccionario.append(diccionario)
 
     conectar.con.close()
-    return lista_diccionario
+    return lista_diccionario    
