@@ -47,7 +47,9 @@ h4{
     padding-right: 3ch;
     display: grid;
     grid-template-columns: auto auto;
+    column-gap: 10px;
 }
+
 
 
 /* Estilo para el articulo que contiene el formulario */

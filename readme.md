@@ -2,6 +2,7 @@
 
 Programa hecho en python con el framework Flask y SQLite, JS para validar html
 
+
 # Instalacion
 - Crear entorno en python y ejecutar el comando
 ```
@@ -9,9 +10,17 @@ pip install -r requirements.txt
 ```
 La libreria utilizada en flask https://flask-wtf.readthedocs.io/en/1.2.x/
 
+
 # Config
-Renombrar el archivo config_template.py a config.py y agregar la siguiente linea:
+Renombrar el archivo config_template.py a config.py y agregar la siguientes linea:
+
 ``` ORIGIN_DATA = "data/db_inversiones.sqlite" ```
+
+``` VERSION = "version de la app" ```
+
+``` APIKEY = "su api key para apicoins.io" ```
+
+
 
 # Ejecucion del programa
 Inicializar parametros para servidor (se hace por la terminal)
@@ -22,18 +31,23 @@ En mac:
 ``` export FLASK_APP=main.py ```
 
 
+
 # Comando para ejecutar el servidor:   
 ``` flask --app main run ```
 
+
 # Comando para ejecutar el servidor en modo debug y ejecutar cambios en tiempo real
 ``` flask --app main --debug run ```
+
 
 
 # Otra opcion de ejecucion: 
 Crear un archivo .env y dentro agregar lo siguiente:
 
 ``` FLASK_APP=main.py ```
+
 ``` FLASK_DEBUG=True ```
+
 
 Luego se puede ejecutar por consola con solo:
 
