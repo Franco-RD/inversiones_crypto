@@ -7,6 +7,8 @@
     <title>Inversiones App</title>
     <link rel="stylesheet" href="/static/css/pico.css">
     <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <script src="/static/js/app.js"></script>
 </head>
 
@@ -19,8 +21,8 @@
     <section class="container">
 
         <h2>Movimientos</h2>
-
-        <div class="float_left">
+        
+        <div class="crypto_table">
             <table id="investments_table">
                 <tr>
                     <th>Fecha</th>
@@ -33,7 +35,7 @@
             </table>
         </div>
 
-        <article class="article_float_right">
+        <article class="status">
             <h4>Invertido: </h4>
             <label>Quien sabe</label>
             <h4>Recuperando: </h4>
@@ -49,49 +51,58 @@
         <article id="form_detail" class="inactive">
             <form id="exchange_form" method="post">
 
-                <div class="grid_form">
-                    <div><label for="from">From: </label></div>
-                    <div><select name="from" id="from">
-                            <option value="EUR">EUR</option>
-                            <option value="BTC">BTC</option>
-                            <option value="ETH">ETH</option>
-                            <option value="USDT">USDT</option>
-                            <option value="BNB">BNB</option>
-                            <option value="XRP">XRP</option>
-                            <option value="ADA">ADA</option>
-                            <option value="SOL">SOL</option>
-                            <option value="DOT">DOT</option>
-                            <option value="MATIC">MATIC</option>
-                        </select></div>
-
-                    <div><label for="to">To: </label></div>
-                    <div><select name="to" id="to">
-                        <option value="EUR">EUR</option>
-                        <option value="BTC">BTC</option>
-                        <option value="ETH">ETH</option>
-                        <option value="USDT">USDT</option>
-                        <option value="BNB">BNB</option>
-                        <option value="XRP">XRP</option>
-                        <option value="ADA">ADA</option>
-                        <option value="SOL">SOL</option>
-                        <option value="DOT">DOT</option>
-                        <option value="MATIC">MATIC</option>
-                    </select></div>
-
-                    <div><label for="quantity_from">Q: </label></div>                        
-                    <div><input type="number" name="quantity_from" id="quantity_from" placeholder="Cuanto deseas gastar"></div>
-                    
-                    <div><label>Q: </label></div>                        
-                    <div><label id="quantity_to">asd</label></div>
-
-                    <div><label class="form_item9">P.U.: </label></div>
-                    <div><label id="pu" class="form_item10">ASD</label></div>
-                    
-                </div>           
-
                 <div class="grid">
-                    <button id="btn_cerrar">Cerrar</button>
-                    <button id="btn_confirmar">Confirmar</button>
+                    <div class="sub_grid">
+                        <div><label for="from">From: </label></div>
+                        <div><select name="from" id="from">
+                                <option value="EUR">EUR</option>
+                                <option value="BTC">BTC</option>
+                                <option value="ETH">ETH</option>
+                                <option value="USDT">USDT</option>
+                                <option value="BNB">BNB</option>
+                                <option value="XRP">XRP</option>
+                                <option value="ADA">ADA</option>
+                                <option value="SOL">SOL</option>
+                                <option value="DOT">DOT</option>
+                                <option value="MATIC">MATIC</option>
+                            </select></div>
+
+                        <div><label for="quantity_from">Q: </label></div>
+                        <div><input type="number" name="quantity_from" id="quantity_from"
+                                placeholder="Cuanto deseas invertir"></div>
+
+                        <div class="item5"><button name="button_calc" id="button_calc"><span class="material-symbols-outlined">
+                                    calculate
+                                </span></button></div>
+
+                    </div>
+
+                    <div class="sub_grid">
+                        <div><label for="to">To: </label></div>
+                        <div><select name="to" id="to">
+                                <option value="EUR">EUR</option>
+                                <option value="BTC">BTC</option>
+                                <option value="ETH">ETH</option>
+                                <option value="USDT">USDT</option>
+                                <option value="BNB">BNB</option>
+                                <option value="XRP">XRP</option>
+                                <option value="ADA">ADA</option>
+                                <option value="SOL">SOL</option>
+                                <option value="DOT">DOT</option>
+                                <option value="MATIC">MATIC</option>
+                            </select></div>
+
+                        <div><label>Q: </label></div>
+                        <div><label id="quantity_to">asd</label></div>
+
+                        <div><label>P.U.: </label></div>
+                        <div><label id="pu">ASD</label></div>
+                    </div>
+                </div>
+
+                <div class="grid_button">
+                    <button id="btn_cerrar" class="button1">Cerrar</button>
+                    <button id="btn_confirmar" class="button2">Confirmar</button>
                 </div>
 
             </form>

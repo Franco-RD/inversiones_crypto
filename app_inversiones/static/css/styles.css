@@ -31,20 +31,14 @@ h4{
 }
 
 
-
-.float_right{
-    float: right;
-    width: 25%;
-    box-sizing: border-box;
-}
-
-.float_left{
+/* Estilos para la tabla y el estatus */
+.crypto_table{
     float: left;
     width: 70%;
     box-sizing: border-box;
 }
 
-.article_float_right{
+.status{
     float: right;    
     margin-top: auto;        
     padding-top: 2%;
@@ -56,7 +50,7 @@ h4{
 }
 
 
-
+/* Estilo para el articulo que contiene el formulario */
 .inactive{
     display: none;  
     padding-top: 5%;
@@ -64,24 +58,42 @@ h4{
 }
 
 
-.grid_form{
+/* Estilos para ordenar el formulario de carga*/
+.sub_grid{
     display: grid;
-    grid-template-columns: 75px auto 75px auto;
+    grid-template-columns: 15% 85%;
+
+}
+.item5{
+    grid-column: 2;
+    grid-row: 3;
 }
 
-.form_item9{
+
+/* Estilos de botones cerrar y guardar del formulario*/
+.grid_button{
+    display: grid;
+    grid-template-columns: auto 150px 150px auto;
+    column-gap: 2%;
+    padding-top: 5%;
+}
+.button1{
+    grid-column: 2;
+}
+.button2{
     grid-column: 3;
-    grid-row: 3;
-}
-.form_item10{
-    grid-column: 4;
-    grid-row: 3;
 }
 
 
-#to, #from{
+/* Tamaños de elementos*/
+#to, #from, #button_calc{
     max-width: 150px;
 }
+#quantity_from{
+    max-width: 270px;
+}
+
+
 
 /* Hacer que el formulario sea una ventana emergente
 #investments_table, #form_detail {
@@ -98,7 +110,7 @@ h4{
 */
 
 
-/* Clase vieja para acomodar formulario - no borrar por ahora
+/* Primera clase vieja para acomodar formulario - no borrar por ahora
 .grid_item_left{
     display: flex;
     justify-content: left;
@@ -109,5 +121,20 @@ h4{
     display: flex;
     justify-content: right;
     align-items: left;    
+}
+*/
+
+/* Segunda clase vieja para acomodar formulario - no borrar por ahora
+.grid_form{
+    display: grid;
+    grid-template-columns: 75px auto 75px auto;
+}
+.form_item9{
+    grid-column: 3;
+    grid-row: 3;
+}
+.form_item10{
+    grid-column: 4;
+    grid-row: 3;
 }
 */
