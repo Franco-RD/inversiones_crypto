@@ -1,5 +1,5 @@
 from app_inversiones import app
-from app_inversiones.models import *
+from app_inversiones.models_db import *
 from config import *
 from flask import render_template, request, jsonify
 from http import HTTPStatus
@@ -31,6 +31,6 @@ def all_movements():
         ), HTTPStatus.BAD_REQUEST
     
 
-@app.route(f"/api/{VERSION}/tasa/<moneda_from>/<moneda_to>")
-def get_tasa(moneda_from, moneda_to):
+@app.route(f"/api/{VERSION}/tasa/<str:moneda_from>/<str:moneda_to>")
+def tasa_conversion(moneda_from, moneda_to):
     pass

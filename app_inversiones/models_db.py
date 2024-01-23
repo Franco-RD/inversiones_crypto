@@ -17,4 +17,4 @@ def select_all():
         lista_diccionario.append(diccionario)
 
     conectar.con.close()
-    return lista_diccionario    
+    return lista_diccionario  
