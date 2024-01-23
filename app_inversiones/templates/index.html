@@ -35,20 +35,23 @@
 
         <article class="article_float_right">
             <h4>Invertido: </h4>
+            <label>Quien sabe</label>
             <h4>Recuperando: </h4>
+            <label>Quien sabe</label>
             <h4>V. de compra: </h4>
+            <label>Quien sabe</label>
             <h4>V. actual: </h4>
+            <label>Quien sabe</label>
         </article>
-        
+
         <a href="#" role="button" id="btn_nuevo">Nuevo</a>
 
         <article id="form_detail" class="inactive">
             <form id="exchange_form" method="post">
 
-                <div class="grid">
-                    <div class="grid_item_left">
-                        <label for="from">From: </label>
-                        <select name="from" id="from">
+                <div class="grid_form">
+                    <div><label for="from">From: </label></div>
+                    <div><select name="from" id="from">
                             <option value="EUR">EUR</option>
                             <option value="BTC">BTC</option>
                             <option value="ETH">ETH</option>
@@ -59,39 +62,32 @@
                             <option value="SOL">SOL</option>
                             <option value="DOT">DOT</option>
                             <option value="MATIC">MATIC</option>
-                        </select>
-                    </div>
-                    <div class="grid_item_right">
-                        <label for="to">To: </label>
-                        <select name="to" id="to">
-                            <option value="EUR">EUR</option>
-                            <option value="BTC">BTC</option>
-                            <option value="ETH">ETH</option>
-                            <option value="USDT">USDT</option>
-                            <option value="BNB">BNB</option>
-                            <option value="XRP">XRP</option>
-                            <option value="ADA">ADA</option>
-                            <option value="SOL">SOL</option>
-                            <option value="DOT">DOT</option>
-                            <option value="MATIC">MATIC</option>
-                        </select>
-                    </div>
-                </div>
+                        </select></div>
 
-                <div class="grid">
-                    <div class="grid_item_left">
-                        <label for="quantity_from">Q: </label>
-                        <input type="number" name="quantity_from" id="quantity_from" placeholder="Cuanto deseas gastar">
-                    </div>
-                    <div class="grid_item_right">
-                        <label>Q: </label>
-                        <label id="quantity_to">asd</label>
-                    </div>
-                </div>
+                    <div><label for="to">To: </label></div>
+                    <div><select name="to" id="to">
+                        <option value="EUR">EUR</option>
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                        <option value="USDT">USDT</option>
+                        <option value="BNB">BNB</option>
+                        <option value="XRP">XRP</option>
+                        <option value="ADA">ADA</option>
+                        <option value="SOL">SOL</option>
+                        <option value="DOT">DOT</option>
+                        <option value="MATIC">MATIC</option>
+                    </select></div>
 
-                <div class="grid_item_right">
-                    <label id="pu">P.U.: </label>
-                </div>
+                    <div><label for="quantity_from">Q: </label></div>                        
+                    <div><input type="number" name="quantity_from" id="quantity_from" placeholder="Cuanto deseas gastar"></div>
+                    
+                    <div><label>Q: </label></div>                        
+                    <div><label id="quantity_to">asd</label></div>
+
+                    <div><label class="form_item9">P.U.: </label></div>
+                    <div><label id="pu" class="form_item10">ASD</label></div>
+                    
+                </div>           
 
                 <div class="grid">
                     <button id="btn_cerrar">Cerrar</button>

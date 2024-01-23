@@ -30,6 +30,8 @@ h4{
     font-size: 1em;
 }
 
+
+
 .float_right{
     float: right;
     width: 25%;
@@ -38,34 +40,44 @@ h4{
 
 .float_left{
     float: left;
-    width: 75%;
+    width: 70%;
     box-sizing: border-box;
 }
 
 .article_float_right{
-    float: right;
-    margin-top: auto;    
+    float: right;    
+    margin-top: auto;        
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 3ch;
     padding-right: 3ch;
+    display: grid;
+    grid-template-columns: auto auto;
 }
+
+
 
 .inactive{
     display: none;  
+    padding-top: 5%;
+    padding-bottom: 1%;
 }
 
-.grid_item_left{
-    display: flex;
-    justify-content: left;
-    align-items: left;    
+
+.grid_form{
+    display: grid;
+    grid-template-columns: 75px auto 75px auto;
 }
 
-.grid_item_right{
-    display: flex;
-    justify-content: right;
-    align-items: left;    
+.form_item9{
+    grid-column: 3;
+    grid-row: 3;
 }
+.form_item10{
+    grid-column: 4;
+    grid-row: 3;
+}
+
 
 #to, #from{
     max-width: 150px;
@@ -82,5 +94,20 @@ h4{
 
 #form_detail {
     z-index: 2;
+}
+*/
+
+
+/* Clase vieja para acomodar formulario - no borrar por ahora
+.grid_item_left{
+    display: flex;
+    justify-content: left;
+    align-items: left;    
+}
+
+.grid_item_right{
+    display: flex;
+    justify-content: right;
+    align-items: left;    
 }
 */
