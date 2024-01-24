@@ -1,5 +1,8 @@
 console.log("Funcionando")
 
+const version = "v1.0"
+
+
 let peticion_movimientos = new XMLHttpRequest()  //Creo un objeto de tipo XMLHttpRequest
 function peticion_movimientos_handler(){        //Las variables que vamos declarando y usando con this son propias de JS por lo que no hace falta declararlas antes
     if(this.readyState === 4){                       
@@ -64,6 +67,40 @@ function hideForm(event){
 }
 
 
+
+function peticion_rate_handler(){
+    
+    if(this.readyState === 4){
+        if(this.status === 200){
+            const datos = JSON.parse(this.responseText)             
+            const quantity_from = document.getElementById("quantity_from").innerText
+            console.log(Number(datos.rate)*Number(quantity_from))
+            
+            document.getElementById("quantity_to").innerHTML=datos.rate
+            document.getElementById("pu").innerHTML=Number(datos.rate)*Number(quantity_from)
+        }else{
+            alert("Se ha producido un error en la consulta")
+        }
+    }
+}
+
+//Obtener el exchage rate
+function getRate(event){
+    event.preventDefault() 
+    console.log("getRate")
+    //Toma solo el elemento seleccionado de los select
+    el = document.getElementById('select_from')  
+    moneda_from = el.options[el.selectedIndex].text
+    el = document.getElementById('select_to')
+    moneda_to = el.options[el.selectedIndex].text
+    
+    peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/tasa/${moneda_from}/${moneda_to}`, true);  
+    peticion_movimientos.onload = peticion_rate_handler
+    peticion_movimientos.onerror = function(){alert("No se ha podido obtener el precio de la moneda")}  
+    peticion_movimientos.send();
+}
+
+
 window.onload = function(){
 
     //Mostrar formulario
@@ -73,6 +110,10 @@ window.onload = function(){
     //Ocultar formulario
     let cerrar = document.getElementById("btn_cerrar");
     cerrar.addEventListener("click", hideForm)
+
+    //Mostrar exchage rate
+    let rate = document.getElementById("button_calc")
+    rate.addEventListener("click", getRate)
 
     //Mostrar la tabla en carga de pantalla
     peticion_movimientos.open("GET", "http://127.0.0.1:5000/api/v1.0/movimientos", true);  

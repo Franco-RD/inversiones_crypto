@@ -1,10 +1,12 @@
 from app_inversiones import app
 from app_inversiones.models_db import *
+from app_inversiones.models_api import *
 from config import *
 from flask import render_template, request, jsonify
 from http import HTTPStatus
 import sqlite3
-
+import requests
+ 
 
 @app.route("/")
 def index():
@@ -31,6 +33,16 @@ def all_movements():
         ), HTTPStatus.BAD_REQUEST
     
 
-@app.route(f"/api/{VERSION}/tasa/<str:moneda_from>/<str:moneda_to>")
+@app.route(f"/api/{VERSION}/tasa/<moneda_from>/<moneda_to>")
 def tasa_conversion(moneda_from, moneda_to):
-    pass
+    data = get_exchange_rate(moneda_from=moneda_from, moneda_to=moneda_to) 
+
+    return jsonify(
+        {
+            "rate": data['rate'], 
+            "time": data['time'],
+            "monedas": {"from": moneda_from, "to": moneda_to},
+            "status": "Success"
+        }
+    ), HTTPStatus.OK
+    
