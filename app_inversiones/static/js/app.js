@@ -64,20 +64,21 @@ function viewForm(event){
 function hideForm(event){  
     event.preventDefault()  //evita que el boton cerrar envie un POST
     document.getElementById("form_detail").style.display="none";  
+    document.getElementById("quantity_from").value=""
+    document.getElementById("quantity_to").innerText=""
+    document.getElementById("pu").innerText=""
 }
 
 
 
-function peticion_rate_handler(){
-    
+function peticion_rate_handler(){    
     if(this.readyState === 4){
         if(this.status === 200){
             const datos = JSON.parse(this.responseText)             
-            const quantity_from = document.getElementById("quantity_from").innerText
-            console.log(Number(datos.rate)*Number(quantity_from))
-            
+            const quantity_from = document.getElementById("quantity_from").value 
+                        
             document.getElementById("quantity_to").innerHTML=datos.rate
-            document.getElementById("pu").innerHTML=Number(datos.rate)*Number(quantity_from)
+            document.getElementById("pu").innerHTML=datos.rate*quantity_from
         }else{
             alert("Se ha producido un error en la consulta")
         }
@@ -86,19 +87,18 @@ function peticion_rate_handler(){
 
 //Obtener el exchage rate
 function getRate(event){
-    event.preventDefault() 
-    console.log("getRate")
-    //Toma solo el elemento seleccionado de los select
-    el = document.getElementById('select_from')  
-    moneda_from = el.options[el.selectedIndex].text
-    el = document.getElementById('select_to')
-    moneda_to = el.options[el.selectedIndex].text
+    event.preventDefault()  
+
+    moneda_from = document.getElementById('select_from').value      
+    moneda_to = document.getElementById('select_to').value
     
     peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/tasa/${moneda_from}/${moneda_to}`, true);  
     peticion_movimientos.onload = peticion_rate_handler
     peticion_movimientos.onerror = function(){alert("No se ha podido obtener el precio de la moneda")}  
     peticion_movimientos.send();
 }
+
+
 
 
 window.onload = function(){
