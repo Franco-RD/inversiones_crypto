@@ -1,7 +1,7 @@
 from app_inversiones.conexion import Conexion
 
 def select_all():
-    conectar = Conexion("select * from investments;")
+    conectar = Conexion("SELECT * FROM investments;")
     filas = conectar.res.fetchall()  #res.fetchall() si trae los datos de las columnas nada mas en un a lista de tuplas (1, 2024-01-01, Nomina Enero, 1500)
     columnas = conectar.res.description  #Nombres de columnas en lista de tuplas  (id,0000) (date,0000) (concept,0000) (quantity,0000)
 
@@ -18,3 +18,14 @@ def select_all():
 
     conectar.con.close()
     return lista_diccionario  
+
+
+def insert(registroMovimiento):
+    conectarInsert = Conexion("INSERT into investments (date, time, moneda_from, cantidad_from, moneda_to, cantidad_to) VALUES (?, ?, ?, ?, ?, ?);", registroMovimiento)
+    conectarInsert.con.commit()
+    conectarInsert.con.close()
+    
+
+def get_last_id(registroFecha, registroHora):
+    conectarId = Conexion(f"SELECT id FROM investments WHERE date = {str(registroFecha)} and time = {str(registroHora)};")
+    conectarId.con.close()

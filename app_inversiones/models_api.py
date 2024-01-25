@@ -13,4 +13,4 @@ def get_exchange_rate(moneda_from, moneda_to):
         return data
         
     else: 
-        return data['error']
+        return data

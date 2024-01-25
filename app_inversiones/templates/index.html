@@ -47,14 +47,15 @@
         </article>
 
         <a href="#" role="button" id="btn_nuevo">Invertir</a>
-
+        
         <article id="form_detail" class="inactive">
-            <form id="exchange_form" method="post">
+            <form id="exchange_form" method="POST">
 
                 <div class="grid">
                     <div class="sub_grid">
                         <div><label for="from">From: </label></div>
                         <div><select name="from" id="select_from">
+                                <option value=""></option>
                                 <option value="EUR">EUR</option>
                                 <option value="BTC">BTC</option>
                                 <option value="ETH">ETH</option>
@@ -80,6 +81,7 @@
                     <div class="sub_grid">
                         <div><label for="to">To: </label></div>
                         <div><select name="to" id="select_to">
+                                <option value=""></option>
                                 <option value="EUR">EUR</option>
                                 <option value="BTC">BTC</option>
                                 <option value="ETH">ETH</option>
@@ -93,20 +95,21 @@
                             </select></div>
 
                         <div><label>Q: </label></div>
-                        <div><label id="quantity_to">asd</label></div>
+                        <div><label id="quantity_to">Tasa de cambio</label></div>
 
                         <div><label>P.U.: </label></div>
-                        <div><label id="pu">ASD</label></div>
+                        <div><label id="quantity_total">Total</label></div>
                     </div>
                 </div>
 
                 <div class="grid_button">
                     <button id="btn_cerrar" class="button1">Cerrar</button>
-                    <button id="btn_confirmar" class="button2">Confirmar</button>
+                    <button id="btn_confirmar" class="button2" type="submit">Confirmar</button>
                 </div>
 
             </form>
         </article>
+        
 
     </section>
 
