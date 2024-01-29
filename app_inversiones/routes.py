@@ -57,14 +57,14 @@ def tasa_conversion(moneda_from, moneda_to):
 
 @app.route(f"/api/{VERSION}/movimiento", methods=["POST"])
 def insert_movement():
-    datos = request.json
-  
-    try:
+    datos = request.json   
+
+    haySaldo = get_saldo_crypto(datos['moneda_from'], datos['quantity_from'])
+    
+    if haySaldo == True:  #Comprueba si hay saldo
         insert([datos['date'], datos['time'], datos['moneda_from'], datos['quantity_from'], datos['moneda_to'], datos['quantity_to']])
         id = get_last_id(datos['date'], datos['time'])
-        haySaldo = get_saldo_crypto(datos['moneda_from'], datos['quantity_from'])
-
-        if haySaldo:
+        try:
             return jsonify(
                 {
                     "id": id,            
@@ -72,19 +72,23 @@ def insert_movement():
                     "status": "Success"
                 }
             ), HTTPStatus.CREATED
-        
-        else:
+        except sqlite3.Error as e:  #Si da error el sqlite
             return jsonify(
-                {            
-                    "mensaje": "No hay saldo suficiente",
-                    "status": "Fail"
+                {
+                    "data": str(e),
+                    "status": "Error"
                 }
-            ), HTTPStatus.OK
+            ), HTTPStatus.BAD_REQUEST
     
-    except sqlite3.Error as e:
+    else:  #Si no hay saldo
         return jsonify(
-            {
-                "data": str(e),
-                "status": "Error"
+            {            
+                "mensaje": "No hay saldo suficiente",
+                "status": "Fail"
             }
-        ), HTTPStatus.BAD_REQUEST
+        ), HTTPStatus.OK
+    
+
+@app.route(f"/api/{VERSION}/status")
+def status():
+    pass

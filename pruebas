@@ -10,17 +10,17 @@ def get_saldo_crypto(crypto_from, quantity_from):
     saldo_from = conectarSaldoFrom.res.fetchone()
     conectarSaldoFrom.con.close()
 
-
     saldo = saldo_to[0] - saldo_from[0]
 
     if saldo >= quantity_from:
-        print("Hay saldo")
+        return True
     else:
-        print("No hay saldo")
+        return False
     
 
 crypto = "BTC"
-asd = get_saldo_crypto(crypto, 2)
+asd = get_saldo_crypto(crypto, 15)
+print(asd)
 
 
 def get_last_id(registroFecha, registroHora):

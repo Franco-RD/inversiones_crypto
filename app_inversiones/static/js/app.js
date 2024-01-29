@@ -119,7 +119,7 @@ function getRate(event){
 //Handler y XMLHttp para nuevo registro
 let peticion_nuevo_registro = new XMLHttpRequest()
 function peticion_registro_handler(){
-    if(this.readyState === 4){
+    if(this.readyState === 4){   
         if(this.status === 201){  //Este es el HTTPStatus.CREATED que pasa la ruta 
             //Mostrar la tabla completa luego de guardar un movimiento nuevo
             peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/movimientos`, true);  
@@ -134,9 +134,38 @@ function peticion_registro_handler(){
             document.getElementById("quantity_from").value=""
             document.getElementById("quantity_to").innerText=""
             document.getElementById("quantity_total").innerText=""
-        }else{
+        }
+        if(this.status === 200){
+            alert("No hay saldo suficiente")
+        }
+        if(this.status != 200 && this.status != 201){
             alert("Se ha producido un error en la consulta para guardar la inversion")
         }
+
+        /*
+        switch(this.status){
+            case 201:
+                //Mostrar la tabla completa luego de guardar un movimiento nuevo
+                peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/movimientos`, true);  
+                peticion_movimientos.onload = peticion_movimientos_handler  
+                peticion_movimientos.onerror = function(){alert("No se ha podido completar la peticion movimientos")}  
+                peticion_movimientos.send();  
+
+                //Vacia los campos y cierra formulario luego de guardar un movimiento nuevo
+                document.getElementById("form_detail").style.display="none";  
+                document.getElementById("select_from").value=""
+                document.getElementById("select_to").value=""
+                document.getElementById("quantity_from").value=""
+                document.getElementById("quantity_to").innerText=""
+                document.getElementById("quantity_total").innerText=""
+            
+            case 200:
+                alert("No hay saldo suficiente")
+            
+            default:
+                alert("Se ha producido un error en la consulta para guardar la inversion")
+        }
+        */               
     }
 }
 
