@@ -52,3 +52,17 @@ def get_saldo_crypto(crypto_from, quantity_from):
     
     else:
         return True
+    
+
+def get_status():
+    conectarInvertido = Conexion("SELECT SUM(cantidad_from) FROM investments WHERE moneda_from = 'EUR';")
+    invertido = conectarInvertido.res.fetchone()
+    conectarInvertido.con.close()
+
+    conectarRecuperado = Conexion("SELECT SUM(cantidad_to) FROM investments WHERE moneda_to = 'EUR';")
+    recuperado = conectarRecuperado.res.fetchone()
+    conectarRecuperado.con.close()
+
+    valor_compra = float(invertido[0]) - float(recuperado[0])
+
+    return {"invertido": invertido[0], "recuperado": recuperado[0], "valor_compra": valor_compra}

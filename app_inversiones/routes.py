@@ -91,4 +91,20 @@ def insert_movement():
 
 @app.route(f"/api/{VERSION}/status")
 def status():
-    pass
+    data = get_status()
+    
+    try:
+        return jsonify(
+            {
+                "data": data,                 
+                "status": "Success"
+            }
+        ), HTTPStatus.OK
+        
+    except sqlite3.Error as e:  #Si da error el sqlite
+        return jsonify(
+            {
+                "mensaje": str(e),
+                "status": "Error"
+            }
+        ), HTTPStatus.BAD_REQUEST
