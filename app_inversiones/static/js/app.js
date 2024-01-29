@@ -120,7 +120,7 @@ function getRate(event){
 let peticion_nuevo_registro = new XMLHttpRequest()
 function peticion_registro_handler(){
     if(this.readyState === 4){
-        if(this.status === 201){
+        if(this.status === 201){  //Este es el HTTPStatus.CREATED que pasa la ruta 
             //Mostrar la tabla completa luego de guardar un movimiento nuevo
             peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/movimientos`, true);  
             peticion_movimientos.onload = peticion_movimientos_handler  

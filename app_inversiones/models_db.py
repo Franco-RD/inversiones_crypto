@@ -27,5 +27,24 @@ def insert(registroMovimiento):
     
 
 def get_last_id(registroFecha, registroHora):
-    conectarId = Conexion(f"SELECT id FROM investments WHERE date = {str(registroFecha)} and time = {str(registroHora)};")
-    conectarId.con.close()
+    conectarId = Conexion(f"SELECT id FROM investments WHERE date = '{str(registroFecha)}' and time = '{str(registroHora)}';")
+    id = conectarId.res.fetchone()
+    conectarId.res.close()    
+    return id[0]
+
+
+def get_saldo_crypto(crypto_from, quantity_from):
+    conectarSaldoTo = Conexion(f"SELECT SUM(cantidad_to) FROM investments WHERE moneda_to = '{crypto_from}';")
+    saldo_to = conectarSaldoTo.res.fetchone()
+    conectarSaldoTo.con.close()
+
+    conectarSaldoFrom = Conexion(f"SELECT SUM(cantidad_from) FROM investments WHERE moneda_from = '{crypto_from}';")
+    saldo_from = conectarSaldoFrom.res.fetchone()
+    conectarSaldoFrom.con.close()
+
+    saldo = saldo_to[0] - saldo_from[0]
+
+    if saldo >= quantity_from:
+        return True
+    else:
+        return False

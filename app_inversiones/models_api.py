@@ -8,9 +8,4 @@ def get_exchange_rate(moneda_from, moneda_to):
     data = r.json()
     # r.json() -> {"asset_id_base": "BTC", "asset_id_quote": "EUR", "rate": 36457.681033351495, "time": "2024-01-23T23:15:12.0000000Z"}
     # o -> {"error": "You requested specific single item that we don't have at this moment."}
-    
-    if r.status_code == 200:
-        return data
-        
-    else: 
-        return data
+    return data

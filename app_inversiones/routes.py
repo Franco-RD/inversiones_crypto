@@ -61,15 +61,25 @@ def insert_movement():
   
     try:
         insert([datos['date'], datos['time'], datos['moneda_from'], datos['quantity_from'], datos['moneda_to'], datos['quantity_to']])
-        #id = get_last_id(datos['date'], datos['time'])
+        id = get_last_id(datos['date'], datos['time'])
+        haySaldo = get_saldo_crypto(datos['moneda_from'], datos['quantity_from'])
 
-        return jsonify(
-            {
-                #"id": id,            
-                "monedas": {"from": datos['moneda_from'], "to": datos['moneda_to']},
-                "status": "Success"
-            }
-        ), HTTPStatus.CREATED
+        if haySaldo:
+            return jsonify(
+                {
+                    "id": id,            
+                    "monedas": {"from": datos['moneda_from'], "to": datos['moneda_to']},
+                    "status": "Success"
+                }
+            ), HTTPStatus.CREATED
+        
+        else:
+            return jsonify(
+                {            
+                    "mensaje": "No hay saldo suficiente",
+                    "status": "Fail"
+                }
+            ), HTTPStatus.OK
     
     except sqlite3.Error as e:
         return jsonify(
