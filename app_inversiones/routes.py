@@ -75,7 +75,7 @@ def insert_movement():
         except sqlite3.Error as e:  #Si da error el sqlite
             return jsonify(
                 {
-                    "data": str(e),
+                    "mensaje": str(e),
                     "status": "Error"
                 }
             ), HTTPStatus.BAD_REQUEST
@@ -83,7 +83,7 @@ def insert_movement():
     else:  #Si no hay saldo
         return jsonify(
             {            
-                "mensaje": "No hay saldo suficiente",
+                "mensaje": f"No hay saldo suficiente de {datos['moneda_from']}",
                 "status": "Fail"
             }
         ), HTTPStatus.OK

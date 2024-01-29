@@ -34,17 +34,21 @@ def get_last_id(registroFecha, registroHora):
 
 
 def get_saldo_crypto(crypto_from, quantity_from):
-    conectarSaldoTo = Conexion(f"SELECT SUM(cantidad_to) FROM investments WHERE moneda_to = '{crypto_from}';")
-    saldo_to = conectarSaldoTo.res.fetchone()
-    conectarSaldoTo.con.close()
+    if crypto_from != 'EUR':
+        conectarSaldoTo = Conexion(f"SELECT SUM(cantidad_to) FROM investments WHERE moneda_to = '{crypto_from}';")
+        saldo_to = conectarSaldoTo.res.fetchone()
+        conectarSaldoTo.con.close()
 
-    conectarSaldoFrom = Conexion(f"SELECT SUM(cantidad_from) FROM investments WHERE moneda_from = '{crypto_from}';")
-    saldo_from = conectarSaldoFrom.res.fetchone()
-    conectarSaldoFrom.con.close()
+        conectarSaldoFrom = Conexion(f"SELECT SUM(cantidad_from) FROM investments WHERE moneda_from = '{crypto_from}';")
+        saldo_from = conectarSaldoFrom.res.fetchone()
+        conectarSaldoFrom.con.close()
 
-    saldo = saldo_to[0] - saldo_from[0]
+        saldo = saldo_to[0] - saldo_from[0]
 
-    if float(saldo) >= float(quantity_from):  #Hay que ponerles float, sobre todo porque el quantity_from llega como str
-        return True
+        if float(saldo) >= float(quantity_from):  #Hay que ponerles float, sobre todo porque el quantity_from llega como str
+            return True
+        else:
+            return False
+    
     else:
-        return False
+        return True

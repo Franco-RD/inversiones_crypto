@@ -79,7 +79,7 @@ function hideForm(event){
 
 //Handler para obtener el exchage rate
 function peticion_rate_handler(){    
-    if(this.readyState === 4){
+    if(this.readyState === 4){        
         if(this.status === 200){
             const datos = JSON.parse(this.responseText)  //captura lo que manda la peticion http. Convertimos a objeto JSON responseText y meterlo en datos  
             const quantity_from = document.getElementById("quantity_from").value             
@@ -119,8 +119,11 @@ function getRate(event){
 //Handler y XMLHttp para nuevo registro
 let peticion_nuevo_registro = new XMLHttpRequest()
 function peticion_registro_handler(){
-    if(this.readyState === 4){   
+    if(this.readyState === 4){
+        const mensajes = JSON.parse(this.responseText)   
         if(this.status === 201){  //Este es el HTTPStatus.CREATED que pasa la ruta 
+            alert(`${mensajes.status}: Se ha comprado ${mensajes.monedas.to} exitosamente con ${mensajes.monedas.from}`)
+
             //Mostrar la tabla completa luego de guardar un movimiento nuevo
             peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/movimientos`, true);  
             peticion_movimientos.onload = peticion_movimientos_handler  
@@ -136,7 +139,7 @@ function peticion_registro_handler(){
             document.getElementById("quantity_total").innerText=""
         }
         if(this.status === 200){
-            alert("No hay saldo suficiente")
+            alert(mensajes.mensaje)
         }
         if(this.status != 200 && this.status != 201){
             alert("Se ha producido un error en la consulta para guardar la inversion")
