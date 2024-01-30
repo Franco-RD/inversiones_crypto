@@ -1,4 +1,6 @@
 from app_inversiones.conexion import Conexion
+from app_inversiones.models_api import get_neto_valor_actual
+
 
 def select_all():
     conectar = Conexion("SELECT * FROM investments;")
@@ -54,15 +56,58 @@ def get_saldo_crypto(crypto_from, quantity_from):
         return True
     
 
+def get_valor_actual():
+    #Toma todos los valores unicos de moneda_to de la db
+    conectarMonedaTo = Conexion("SELECT DISTINCT moneda_to FROM investments;")
+    monedas_to = conectarMonedaTo.res.fetchall()  # [('BTC',), ('ETH',), ('EUR',), ('SOL',), ('ADA',)]
+    conectarMonedaTo.con.close()
+
+    #Guarda la cantidad total de cada moneda de moneda_to en el dic crypto_quantity como par 'moneda': cantidad total
+    crypto_quantity = {}
+    for moneda in monedas_to:  #moneda = tupla ('BTC',)     
+        if moneda[0] != 'EUR':  
+            conectarMonedasToQuantity = Conexion(f"SELECT SUM(cantidad_to) FROM investments WHERE moneda_to = '{str(moneda[0])}';")
+            crypto_quantity[moneda[0]] = conectarMonedasToQuantity.res.fetchone()[0]
+            conectarMonedasToQuantity.con.close()
+
+
+    #Toma todos los valores unicos de moneda_from de la db
+    conectarMonedaFrom = Conexion("SELECT DISTINCT moneda_from FROM investments;")
+    monedas_from = conectarMonedaFrom.res.fetchall()  
+    conectarMonedaFrom.con.close()
+
+    #Resta la cantidad total (suma de cantidades de cantidad_from) de cada moneda del diccionario para que en el diccionario queden las cantidades netas
+    for moneda in monedas_from: #moneda = tupla ('BTC',) 
+        if moneda[0] != 'EUR':
+            for item in crypto_quantity:
+                if item == moneda[0]: 
+                    conectarMonedasFromQuantity = Conexion(f"SELECT SUM(cantidad_from) FROM investments WHERE moneda_from = '{str(moneda[0])}';")
+                    crypto_quantity[item] -= conectarMonedasFromQuantity.res.fetchone()[0]
+                    conectarMonedasFromQuantity.con.close()
+
+    return crypto_quantity  #{'BTC': 5.0046, 'ETH': -3.551, 'SOL': 253.2116, 'ADA': 3366.9327}
+
+
 def get_status():
+    #Obtiene la suma de la columna cantidad_from donde moneda_from es EUR
     conectarInvertido = Conexion("SELECT SUM(cantidad_from) FROM investments WHERE moneda_from = 'EUR';")
     invertido = conectarInvertido.res.fetchone()
     conectarInvertido.con.close()
 
+    #Obtiene la suma de la columna cantidad_to donde moneda_to es EUR
     conectarRecuperado = Conexion("SELECT SUM(cantidad_to) FROM investments WHERE moneda_to = 'EUR';")
     recuperado = conectarRecuperado.res.fetchone()
     conectarRecuperado.con.close()
 
     valor_compra = float(invertido[0]) - float(recuperado[0])
 
-    return {"invertido": invertido[0], "recuperado": recuperado[0], "valor_compra": valor_compra}
+    #Obtiene el saldo neto de cada cryptomoneda, lo pasa a EUR y acumula para conseguir el valor_actual
+    netos_crypto = get_valor_actual()  #{'BTC': 5.0046, 'ETH': -3.551, 'SOL': 253.2116, 'ADA': 3366.9327}
+    valor_actual = 0
+    for item in netos_crypto:
+        valor_actual += get_neto_valor_actual(item, netos_crypto[item])
+        print(valor_actual)
+
+    return {"invertido": invertido[0], "recuperado": recuperado[0], "valor_compra": valor_compra, "valor_actual": valor_actual}
+
+    
