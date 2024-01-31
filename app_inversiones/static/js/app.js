@@ -16,6 +16,7 @@ function peticion_movimientos_handler(){
             const tabla = document.getElementById("investments_table")  //Variable tabla que representa la tabla en html
             const movimientos = datos.data  //como en routes separamos el JSON con dos claves, data para la info y status para el estado, tenemos que iterar solo sobre data. 
 
+            //Crea la tabla para mostrar
             for (let i = 0; i < movimientos.length; i++) {
                 const fila = document.createElement("tr")
 
@@ -52,6 +53,12 @@ function peticion_movimientos_handler(){
     }                     
 }
 
+function mostrar_tabla_movimientos(){
+    peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/movimientos`, true);  
+    peticion_movimientos.onload = peticion_movimientos_handler  
+    peticion_movimientos.onerror = function(){alert("No se ha podido completar la peticion movimientos")}  
+    peticion_movimientos.send();  
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -125,10 +132,7 @@ function peticion_registro_handler(){
             alert(`${mensajes.status}: Se ha comprado ${mensajes.monedas.to} exitosamente con ${mensajes.monedas.from}`)
 
             //Mostrar la tabla completa luego de guardar un movimiento nuevo
-            peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/movimientos`, true);  
-            peticion_movimientos.onload = peticion_movimientos_handler  
-            peticion_movimientos.onerror = function(){alert("No se ha podido completar la peticion movimientos")}  
-            peticion_movimientos.send();  
+            mostrar_tabla_movimientos()  
 
             //Vacia los campos y cierra formulario luego de guardar un movimiento nuevo
             document.getElementById("form_detail").style.display="none";  
@@ -137,6 +141,9 @@ function peticion_registro_handler(){
             document.getElementById("quantity_from").value=""
             document.getElementById("quantity_to").innerText=""
             document.getElementById("quantity_total").innerText=""
+
+            //Mostrar status luego de registrar un movimiento
+            //mostrar_status()
         }
         if(this.status === 200){
             alert(mensajes.mensaje)
@@ -176,11 +183,13 @@ function peticion_registro_handler(){
 function nuevoRegistro(event){
     event.preventDefault()
 
+    // Obtener valores de los elementos del formulario
     const moneda_from = document.getElementById("select_from").value
     const quantity_from = document.getElementById("quantity_from").value
     const moneda_to = document.getElementById("select_to").value
     const quantity_to = Number(document.getElementById("quantity_total").innerText).toFixed(4)
 
+    // Validacion de elementos del formulario
     if (moneda_from == ""){
         alert("Debe elegir una moneda para invertir")
     }
@@ -191,6 +200,7 @@ function nuevoRegistro(event){
         alert("Debe elegir un monto a invertir")
     }
 
+    // Manejo de la peticion post y llamado al handler
     peticion_nuevo_registro.open("POST", `http://127.0.0.1:5000/api/${version}/movimiento`, true)
     peticion_nuevo_registro.onload = peticion_registro_handler
     peticion_nuevo_registro.onerror = function(){alert("No se ha podido completar la peticion")} 
@@ -213,6 +223,33 @@ function nuevoRegistro(event){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+//Handler y XMLHttp para status
+let peticion_status = new XMLHttpRequest
+function peticion_status_handler(){
+    if(this.readyState === 4){
+        if(this.status === 200){
+            const datos_status = JSON.parse(this.responseText) 
+            const info_status = datos_status.data
+
+            document.getElementById("invertido").innerHTML=info_status.invertido
+            document.getElementById("recuperado").innerHTML=info_status.recuperado
+            document.getElementById("valor_compra").innerHTML=info_status.valor_compra
+            document.getElementById("valor_actual").innerHTML=info_status.valor_actual
+        }
+    }
+}
+
+
+function mostrar_status(event){
+    peticion_status.open("GET", `http://127.0.0.1:5000/api/${version}/status`, true);  
+    peticion_status.onload = peticion_status_handler  
+    peticion_status.onerror = function(){alert("No se ha podido completar la peticion movimientos")}  
+    peticion_status.send(); 
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 window.onload = function(){
 
     //Guardar nuevo registro
@@ -231,11 +268,15 @@ window.onload = function(){
     let rate = document.getElementById("button_calc")
     rate.addEventListener("click", getRate)
 
+    //Actualizar status con boton
+    let status = document.getElementById("btn_status");
+    status.addEventListener("click", mostrar_status)
+    
     //Mostrar la tabla en carga de pantalla
-    peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/movimientos`, true);  
-    peticion_movimientos.onload = peticion_movimientos_handler  
-    peticion_movimientos.onerror = function(){alert("No se ha podido completar la peticion movimientos")}  
-    peticion_movimientos.send();  
+    mostrar_tabla_movimientos()  
+
+    //Mostrar status en carga de pantalla
+    //mostrar_status()
 }
 
 

@@ -25,29 +25,30 @@
         <div class="crypto_table">
             <table id="investments_table">
                 <tr>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>From</th>
-                    <th>Cantidad</th>
-                    <th>To</th>
-                    <th>Cantidad</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">From</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">To</th>
+                    <th scope="col">Cantidad</th>
                 </tr>
             </table>
         </div>
 
         <article class="status">
             <h4>Invertido: </h4>
-            <label>Quien sabe</label>
+            <label id="invertido">Esperando datos</label>
             <h4>Recuperando: </h4>
-            <label>Quien sabe</label>
+            <label id="recuperado">Esperando datos</label>
             <h4>V. de compra: </h4>
-            <label>Quien sabe</label>
+            <label id="valor_compra">Esperando datos</label>
             <h4>V. actual: </h4>
-            <label>Quien sabe</label>
+            <label id="valor_actual">Esperando datos</label>
         </article>
 
         <a href="#" role="button" id="btn_nuevo">Invertir</a>
-        
+        <a href="#" role="button" id="btn_status">Actualizar Status</a>
+    
         <article id="form_detail" class="inactive">
             <form id="exchange_form" method="POST">
 

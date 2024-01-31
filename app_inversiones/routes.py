@@ -92,7 +92,7 @@ def insert_movement():
 @app.route(f"/api/{VERSION}/status")
 def status():
     data = get_status()
-    
+    #hacer algo para el status 304
     try:
         return jsonify(
             {

@@ -105,9 +105,8 @@ def get_status():
     netos_crypto = get_valor_actual()  #{'BTC': 5.0046, 'ETH': -3.551, 'SOL': 253.2116, 'ADA': 3366.9327}
     valor_actual = 0
     for item in netos_crypto:
-        valor_actual += get_neto_valor_actual(item, netos_crypto[item])
-        print(valor_actual)
+        valor_actual += (netos_crypto[item] * get_neto_valor_actual(item))
 
-    return {"invertido": invertido[0], "recuperado": recuperado[0], "valor_compra": valor_compra, "valor_actual": valor_actual}
+    return {"invertido": round(invertido[0], 4), "recuperado": round(recuperado[0], 4), "valor_compra": round(valor_compra, 4), "valor_actual": round(valor_actual, 4)}
 
     
