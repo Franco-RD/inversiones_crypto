@@ -72,14 +72,19 @@ function viewForm(event){
 //Cerrar el formulario con el boton cerrar
 function hideForm(event){  
     event.preventDefault()  //evita que el boton cerrar envie un POST
+    form_reset()
+}
+
+
+//Reiniciar formulario
+function form_reset(){
     document.getElementById("form_detail").style.display="none";  
     document.getElementById("select_from").value=""
     document.getElementById("select_to").value=""
     document.getElementById("quantity_from").value=""
-    document.getElementById("quantity_to").innerText=""
-    document.getElementById("quantity_total").innerText=""
+    document.getElementById("quantity_to").innerText="Tasa de cambio"
+    document.getElementById("quantity_total").innerText="Total"
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,15 +145,10 @@ function peticion_registro_handler(){
             mostrar_tabla_movimientos()  
 
             //Vacia los campos y cierra formulario luego de guardar un movimiento nuevo
-            document.getElementById("form_detail").style.display="none";  
-            document.getElementById("select_from").value=""
-            document.getElementById("select_to").value=""
-            document.getElementById("quantity_from").value=""
-            document.getElementById("quantity_to").innerText=""
-            document.getElementById("quantity_total").innerText=""
+            form_reset()
 
             //Mostrar status luego de registrar un movimiento
-            //mostrar_status()
+            mostrar_status()
         }
         if(this.status === 200){
             alert(mensajes.mensaje)
@@ -193,16 +193,21 @@ function nuevoRegistro(event){
     const quantity_from = document.getElementById("quantity_from").value
     const moneda_to = document.getElementById("select_to").value
     const quantity_to = Number(document.getElementById("quantity_total").innerText).toFixed(4)
-
+    
     // Validacion de elementos del formulario
     if (moneda_from == ""){
         alert("Debe elegir una moneda para invertir")
     }
     if (moneda_to == ""){
         alert("Debe elegir una moneda para comprar")
+        return  //El return es porque si moneda_to se dejaba vacio, igualmente avanzaba y generaba el movimiento
     }
     if (quantity_from == ""){
         alert("Debe elegir un monto a invertir")
+    }
+    if (quantity_to == "NaN"){  //El == "NaN" es porque si no calculan el rate, el valor de quantity_to es "NaN"
+        alert("Debe calcular la taza de conversion antes de poder registrar el movimiento")
+        return
     }
 
     // Manejo de la peticion post y llamado al handler
@@ -281,7 +286,7 @@ window.onload = function(){
     mostrar_tabla_movimientos()  
 
     //Mostrar status en carga de pantalla
-    //mostrar_status()
+    mostrar_status()
 }
 
 

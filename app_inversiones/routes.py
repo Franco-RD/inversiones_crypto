@@ -38,7 +38,7 @@ def tasa_conversion(moneda_from, moneda_to):
     if moneda_from == moneda_to:
         return jsonify(
                 {
-                    "error": "Debe ingresar monedas distintas",
+                    "error": "Las monedas no pueden ser iguales",
                     "status": "Success"
                 }
             ), HTTPStatus.FORBIDDEN

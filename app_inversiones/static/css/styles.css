@@ -34,7 +34,7 @@ h4{
 /* Estilos para la tabla y el estatus */
 .crypto_table{
     float: left;
-    width: 70%;
+    width: 67%;
     box-sizing: border-box;
 }
 
@@ -48,6 +48,7 @@ h4{
     display: grid;
     grid-template-columns: auto auto;
     column-gap: 10px;
+    margin-bottom: 15px;
 }
 
 
@@ -69,6 +70,20 @@ h4{
 .item5{
     grid-column: 2;
     grid-row: 3;
+}
+
+/* Estilos para ordenar los botones Invertir y Actualizar Status*/
+.btn_console{
+    float: right;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+    width: 352px;    
+}
+
+#btn_status{
+    background-color: rgb(12, 125, 14);
+    border-color: rgb(12, 125, 14);
 }
 
 
@@ -102,7 +117,7 @@ h4{
     position: relative;
 }
 
-#investments_table {
+#investments_table, #status, #btn_console {
     z-index: 1;
 }
 
