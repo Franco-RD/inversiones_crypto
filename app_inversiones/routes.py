@@ -34,25 +34,34 @@ def all_movements():
 
 @app.route(f"/api/{VERSION}/tasa/<moneda_from>/<moneda_to>")
 def tasa_conversion(moneda_from, moneda_to):
-    data = get_exchange_rate(moneda_from=moneda_from, moneda_to=moneda_to) 
 
-    try:
+    if moneda_from == moneda_to:
         return jsonify(
-            {
-                "rate": data['rate'], 
-                "time": data['time'],
-                "monedas": {"from": moneda_from, "to": moneda_to},
-                "status": "Success"
-            }
-        ), HTTPStatus.OK
-        
-    except Exception as e:
-        return jsonify(
-            {
-                "error": data['error'],                 
-                "status": "Error"
-            }
-        ), HTTPStatus.BAD_REQUEST
+                {
+                    "error": "Debe ingresar monedas distintas",
+                    "status": "Success"
+                }
+            ), HTTPStatus.FORBIDDEN
+
+    else:
+        data = get_exchange_rate(moneda_from=moneda_from, moneda_to=moneda_to)     
+        try:
+            return jsonify(
+                {
+                    "rate": data['rate'], 
+                    "time": data['time'],
+                    "monedas": {"from": moneda_from, "to": moneda_to},
+                    "status": "Success"
+                }
+            ), HTTPStatus.OK
+            
+        except Exception as e:
+            return jsonify(
+                {
+                    "error": data['error'],                 
+                    "status": "Error"
+                }
+            ), HTTPStatus.BAD_REQUEST
         
 
 @app.route(f"/api/{VERSION}/movimiento", methods=["POST"])

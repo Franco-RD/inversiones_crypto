@@ -86,9 +86,10 @@ function hideForm(event){
 
 //Handler para obtener el exchage rate
 function peticion_rate_handler(){    
-    if(this.readyState === 4){        
+    if(this.readyState === 4){      
+        const datos = JSON.parse(this.responseText)  //captura lo que manda la peticion http. Convertimos a objeto JSON responseText y meterlo en datos
         if(this.status === 200){
-            const datos = JSON.parse(this.responseText)  //captura lo que manda la peticion http. Convertimos a objeto JSON responseText y meterlo en datos  
+              
             const quantity_from = document.getElementById("quantity_from").value             
                         
             document.getElementById("quantity_to").innerHTML=datos.rate
@@ -100,7 +101,11 @@ function peticion_rate_handler(){
             fechaTransaccion = fechaYhora[0]
             horaTransaccion = fechaYhora[1].replace(/\.\d+Z$/, '')  //replace saca el .0000000Z del final
             
-        }else{
+        }
+        if(this.status === 403){
+            alert(datos.error)
+        }
+        if(this.status != 200 && this.status != 403){
             alert("Se ha producido un error en la consulta de la tasa de cambio")
         }
     }
