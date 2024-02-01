@@ -288,7 +288,7 @@ window.onload = function(){
     //Mostrar status en carga de pantalla
     //mostrar status esta comentado para que no consuma consultas a apicoin en la carga de la pagina
     //si me lo olvide comentado, por favor saquenselo para que funcione bien :D
-    //mostrar_status()
+    mostrar_status()
 }
 
 
