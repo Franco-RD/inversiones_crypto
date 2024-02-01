@@ -10,6 +10,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <script src="/static/js/app.js"></script>
+    <script src="/static/js/tabla_config.js"></script>
 </head>
 
 <body>
@@ -26,12 +27,12 @@
         <div class="crypto_table" style="overflow-y: scroll; height: 500px;">
             <table id="investments_table">
                 <tr>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">From</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">To</th>
-                    <th scope="col">Cantidad</th>
+                    <th scope="col" onclick="ordenarTabla(0)">Fecha</th>
+                    <th scope="col" onclick="ordenarTabla(1)">Hora</th>
+                    <th scope="col" onclick="ordenarTabla(2)">From</th>
+                    <th scope="col" onclick="ordenarTabla(3)">Cantidad</th>
+                    <th scope="col" onclick="ordenarTabla(4)">To</th>
+                    <th scope="col" onclick="ordenarTabla(5)">Cantidad</th>
                 </tr>
             </table>
         </div>

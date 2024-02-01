@@ -1,3 +1,5 @@
+/* Estilos generales */
+
 header,footer{    
     background-color: var(--primary);
     color: var(--primary-inverse);
@@ -31,6 +33,15 @@ h4{
 }
 
 
+/* Rresaltar los elementos de la tabla en hover (excepto encabezados) */
+tr:not(:first-child):hover * {  
+    background-color: rgb(12, 125, 14);
+    color: whitesmoke;
+}
+
+
+/*---------------------------------------------------------------------------------------------------------*/
+
 /* Estilos para la tabla y el estatus */
 .crypto_table{
     float: left;
@@ -49,6 +60,13 @@ h4{
     grid-template-columns: auto auto;
     column-gap: 10px;
     margin-bottom: 15px;
+    width: 360px;
+    background-color: rgb(12, 125, 14);
+
+}
+
+.status *{  /* Cambia el color de fuente a todos los elementos dentro del article id="status" */
+    color: whitesmoke;
 }
 
 
@@ -78,13 +96,10 @@ h4{
     display: grid;
     grid-template-columns: auto auto;
     column-gap: 10px;
-    width: 352px;    
+    width: 360px;    
 }
 
-#btn_status{
-    background-color: rgb(12, 125, 14);
-    border-color: rgb(12, 125, 14);
-}
+#btn_status:hover {background-color: rgb(12, 125, 14)}
 
 
 /* Estilos de botones cerrar y guardar del formulario*/
@@ -112,7 +127,7 @@ h4{
 
 
 
-/* Hacer que el formulario sea una ventana emergente */
+/* Hacer que el formulario sea una ventana superpuesta 
 #investments_table, #form_detail {
     position: relative;
 }
@@ -123,35 +138,5 @@ h4{
 
 #form_detail {
     z-index: 2;
-}
-
-
-
-/* Primera clase vieja para acomodar formulario - no borrar por ahora
-.grid_item_left{
-    display: flex;
-    justify-content: left;
-    align-items: left;    
-}
-
-.grid_item_right{
-    display: flex;
-    justify-content: right;
-    align-items: left;    
-}
-*/
-
-/* Segunda clase vieja para acomodar formulario - no borrar por ahora
-.grid_form{
-    display: grid;
-    grid-template-columns: 75px auto 75px auto;
-}
-.form_item9{
-    grid-column: 3;
-    grid-row: 3;
-}
-.form_item10{
-    grid-column: 4;
-    grid-row: 3;
 }
 */

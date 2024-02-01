@@ -286,7 +286,9 @@ window.onload = function(){
     mostrar_tabla_movimientos()  
 
     //Mostrar status en carga de pantalla
-    mostrar_status()
+    //mostrar status esta comentado para que no consuma consultas a apicoin en la carga de la pagina
+    //si me lo olvide comentado, por favor saquenselo para que funcione bien :D
+    //mostrar_status()
 }
 
 
