@@ -1,6 +1,6 @@
 console.log("Funcionando")
 
-const version = "v1.0"
+const version = "v1.1"
 let fechaTransaccion = ""
 let horaTransaccion = ""
 
