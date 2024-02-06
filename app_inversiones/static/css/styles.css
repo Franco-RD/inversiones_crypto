@@ -33,6 +33,22 @@ h4{
 }
 
 
+/* Configuracion para la imgen del header */
+
+.header_content{
+    display: flex; /* Usa flexbox para alinear los elementos horizontalmente */
+    align-items: center;
+}
+
+.btc_image {
+    width: 100px; 
+    height: auto; 
+    border-radius: 50%;  /* Hace a la imagen redonda */
+    margin-left: 15px;
+    margin-bottom: 50px;
+}
+
+
 /* Rresaltar los elementos de la tabla en hover (excepto encabezados) */
 tr:not(:first-child):hover * {  
     background-color: rgb(12, 125, 14);
