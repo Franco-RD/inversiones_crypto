@@ -7,6 +7,11 @@ header,footer{
     font-weight: bold;
 }
 
+header{
+    background-image: url('/static/images/banner.jpg'); 
+    background-size: cover; 
+}
+
 footer{    
     font-size: 0.8em;    
 }
@@ -20,7 +25,10 @@ body{
 
 
 h1{
-    color: aquamarine;
+    color: rgb(252, 197, 70); 
+    color: (28, 232, 152);
+    opacity: 0.5; 
+    font-size: 75%;
 }
 
 h2 {
@@ -35,9 +43,15 @@ h4{
 
 /* Configuracion para la imgen del header */
 
-.header_content{
-    display: flex; /* Usa flexbox para alinear los elementos horizontalmente */
-    align-items: center;
+.header_container{
+    position: relative;  /* Esto junto a header_content es para que myCrypto quede abajo a la derecha */
+    padding-top: 200px;
+}
+
+.header_content{    
+    position: absolute;
+    bottom: -60px;
+    right: 0;    
 }
 
 .btc_image {
