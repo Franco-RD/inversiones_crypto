@@ -260,6 +260,7 @@ function mostrar_status(event){
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 window.onload = function(){
 
     //Guardar nuevo registro
@@ -289,6 +290,7 @@ window.onload = function(){
     //mostrar status esta comentado para que no consuma consultas a apicoin en la carga de la pagina
     //si me lo olvide comentado, por favor saquenselo para que funcione bien :D
     //mostrar_status()
+    
 }
 
 

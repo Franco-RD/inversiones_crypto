@@ -10,7 +10,6 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <script src="/static/js/app.js"></script>
-    <script src="/static/js/tabla_config.js"></script>
 </head>
 
 <body>
@@ -28,14 +27,19 @@
         <!--Tabla de movimientos -->
         <div class="crypto_table" style="overflow-y: scroll; height: 500px;">
             <table id="investments_table">
-                <tr>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">From</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">To</th>
-                    <th scope="col">Cantidad</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>From</th>
+                        <th>Cantidad</th>
+                        <th>To</th>
+                        <th >Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
             </table>
         </div>
 
@@ -65,8 +69,8 @@
 
                 <div class="grid">
                     <div class="sub_grid">
-                        <div><label for="from">From: </label></div>
-                        <div><select name="from" id="select_from">
+                        <div><label for="from"><strong>From: </strong></label></div>
+                        <div><select name="from" id="select_from" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="EUR">EUR</option>
                                 <option value="BTC">BTC</option>
@@ -80,9 +84,9 @@
                                 <option value="MATIC">MATIC</option>
                             </select></div>
 
-                        <div><label for="quantity_from">Q: </label></div>
+                        <div><label for="quantity_from"><strong>Q: </strong></label></div>
                         <div><input type="number" name="quantity_from" id="quantity_from"
-                                placeholder="Cuanto deseas invertir"></div>
+                                style="background-color: white;" placeholder="Cuanto deseas invertir"></div>
 
                         <div class="item5"><button name="button_calc" id="button_calc"><span
                                     class="material-symbols-outlined">
@@ -92,8 +96,8 @@
                     </div>
 
                     <div class="sub_grid">
-                        <div><label for="to">To: </label></div>
-                        <div><select name="to" id="select_to">
+                        <div><label for="to"><strong>To: </strong></label></div>
+                        <div><select name="to" id="select_to" style="background-color: white;">
                                 <option value=""></option>
                                 <option value="EUR">EUR</option>
                                 <option value="BTC">BTC</option>
@@ -107,11 +111,11 @@
                                 <option value="MATIC">MATIC</option>
                             </select></div>
 
-                        <div><label>Q: </label></div>
-                        <div><label id="quantity_to">Tasa de cambio</label></div>
+                        <div><label><strong>Q: </strong></label></div>
+                        <div><label id="quantity_to"><strong>Tasa de cambio</strong></label></div>
 
-                        <div><label>P.U.: </label></div>
-                        <div><label id="quantity_total">Total</label></div>
+                        <div><label><strong>P.U.: </strong></label></div>
+                        <div><label id="quantity_total"><strong>Total</strong></label></div>
                     </div>
                 </div>
 
@@ -128,6 +132,7 @@
     <footer class="container">
         &copy; 2024 - Franco Romano Data - Todos los derechos reservados
     </footer>
+
 </body>
 
 </html>
