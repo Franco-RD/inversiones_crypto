@@ -54,13 +54,47 @@ h4{
     right: 0;    
 }
 
+
+/* Configuracion para animar la imgen de BTC cuando se realiza un registro nuevo */
+
+@keyframes btcAnimation {    
+    0% {opacity: 100%;
+        transform: rotateY(0deg);}
+    11% {transform: rotateY(120deg);}
+    22% {transform: rotateY(240deg);}
+    33% {transform: rotateY(360deg);}
+
+    34% {transform: rotateY(0deg);}
+    44% {transform: rotateY(120deg);}
+    55% {transform: rotateY(240deg);}
+    66% {transform: rotateY(360deg);}
+
+    67% {transform: rotateY(0deg);    
+         opacity: 100%;}
+    66% {transform: rotateY(120deg);}
+    88% {transform: rotateY(240deg);}
+    99% {transform: rotateY(360deg);}
+
+    100%{opacity: 0%;}    
+}
+
+.animate_btcimage{    /* Clase para agregar a la imagen con js y ejecutar la animacion;*/
+    animation-name: btcAnimation;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+}
+
 .btc_image {
+    opacity: 0%;
     width: 100px; 
     height: auto; 
     border-radius: 50%;  /* Hace a la imagen redonda */
-    margin-left: 15px;
-    margin-bottom: 50px;
+    margin-left: 130px;
+    margin-top: 40px;
 }
+
 
 
 /* Rresaltar los elementos de la tabla en hover (excepto encabezados) */
@@ -69,9 +103,6 @@ tr:not(:first-child):hover * {
     color: whitesmoke;
 }
 
-th:hover {
-    cursor: pointer;
-}
 
 /*---------------------------------------------------------------------------------------------------------*/
 

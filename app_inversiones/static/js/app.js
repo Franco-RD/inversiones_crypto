@@ -86,6 +86,7 @@ function form_reset(){
     document.getElementById("quantity_total").innerText="Total"
 }
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -148,39 +149,14 @@ function peticion_registro_handler(){
             form_reset()
 
             //Mostrar status luego de registrar un movimiento
-            mostrar_status()
+            //mostrar_status()
         }
         if(this.status === 200){
             alert(mensajes.mensaje)
         }
         if(this.status != 200 && this.status != 201){
             alert("Se ha producido un error en la consulta para guardar la inversion")
-        }
-
-        /*
-        switch(this.status){
-            case 201:
-                //Mostrar la tabla completa luego de guardar un movimiento nuevo
-                peticion_movimientos.open("GET", `http://127.0.0.1:5000/api/${version}/movimientos`, true);  
-                peticion_movimientos.onload = peticion_movimientos_handler  
-                peticion_movimientos.onerror = function(){alert("No se ha podido completar la peticion movimientos")}  
-                peticion_movimientos.send();  
-
-                //Vacia los campos y cierra formulario luego de guardar un movimiento nuevo
-                document.getElementById("form_detail").style.display="none";  
-                document.getElementById("select_from").value=""
-                document.getElementById("select_to").value=""
-                document.getElementById("quantity_from").value=""
-                document.getElementById("quantity_to").innerText=""
-                document.getElementById("quantity_total").innerText=""
-            
-            case 200:
-                alert("No hay saldo suficiente")
-            
-            default:
-                alert("Se ha producido un error en la consulta para guardar la inversion")
-        }
-        */               
+        }       
     }
 }
 
@@ -291,6 +267,19 @@ window.onload = function(){
     //si me lo olvide comentado, por favor saquenselo para que funcione bien :D
     //mostrar_status()
     
+    //Mostrar animacion al registrar movimiento
+    const btn = document.getElementById('btn_confirmar')
+    const imagen = document.querySelector('.btc_image')
+
+    btn.addEventListener('click', () => {          
+        setTimeout(() => {  // Agregar la clase "animar" después de un breve retraso para que empiece la animacion
+            imagen.classList.add('animate_btcimage'); 
+        }, 1000); // Duración de la animación en milisegundos
+        
+        setTimeout(() => {  // Eliminar la clase "animar" después de un breve retraso para permitir que la animación se complete
+            imagen.classList.remove('animate_btcimage');
+        }, 2000); // Duración de la animación en milisegundos 
+    });    
 }
 
 

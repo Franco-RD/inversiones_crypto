@@ -15,12 +15,12 @@
 <body>
     <header class="container header_container">
         <div class="header_content">
-            <h1>myCrypto</h1> <!--<img src="/static/images/btc.png" alt="Imagen BTC" class="btc_image">-->
+            <h1>myCrypto</h1> 
         </div>
     </header>
 
 
-    <section class="container">
+    <section class="container" id="data_section">
 
         <h2>Movimientos</h2>
 
@@ -60,6 +60,8 @@
             <a href="#form_section" role="button" id="btn_nuevo">Invertir</a>
             <a href="#" role="button" id="btn_status">Actualizar Status</a>
         </div>
+        
+        <img src="/static/images/btc.png" alt="Imagen BTC" class="btc_image">
     </section>
 
     <!--Seccion para el formulario -->
@@ -121,7 +123,7 @@
 
                 <div class="grid_button">
                     <button id="btn_cerrar" class="button1">Cerrar</button>
-                    <button id="btn_confirmar" class="button2" type="submit">Confirmar</button>
+                    <a href="#data_section"><button id="btn_confirmar" class="button2" type="submit">Confirmar</button></a>
                 </div>
 
             </form>
