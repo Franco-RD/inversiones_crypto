@@ -32,10 +32,13 @@ def get_last_id(registroFecha, registroHora):
 
 def get_saldo_crypto(crypto_from, quantity_from):
     if crypto_from != 'EUR':
-        saldo_to = conectar_db.get_suma_moneda("cantidad_to", "moneda_to", crypto_from)
-        saldo_from = conectar_db.get_suma_moneda("cantidad_from", "moneda_from", crypto_from)
+        tuple_saldo_to = conectar_db.get_suma_moneda("cantidad_to", "moneda_to", crypto_from)
+        saldo_to = tuple_saldo_to[0] if tuple_saldo_to[0] is not None else 0
 
-        saldo = saldo_to[0] - saldo_from[0]
+        tuple_saldo_from = conectar_db.get_suma_moneda("cantidad_from", "moneda_from", crypto_from)
+        saldo_from = tuple_saldo_from[0] if tuple_saldo_from[0] is not None else 0
+
+        saldo = saldo_to - saldo_from
 
         if float(saldo) >= float(quantity_from):  #Hay que ponerles float, sobre todo porque el quantity_from llega como str
             return True

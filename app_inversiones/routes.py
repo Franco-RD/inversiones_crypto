@@ -67,7 +67,7 @@ def tasa_conversion(moneda_from, moneda_to):
 @app.route(f"/api/{VERSION}/movimiento", methods=["POST"])
 def insert_movement():
     datos = request.json   
-
+    
     haySaldo = get_saldo_crypto(datos['moneda_from'], datos['quantity_from'])
     
     if haySaldo == True:  #Comprueba si hay saldo

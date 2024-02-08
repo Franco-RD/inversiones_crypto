@@ -1,6 +1,8 @@
 console.log("Funcionando")
 
-const version = "v1.1"
+const version = "v1.2"
+
+//Variables para pasar fecha y hora por separado a la db
 let fechaTransaccion = ""
 let horaTransaccion = ""
 
@@ -87,6 +89,21 @@ function form_reset(){
 }
 
 
+//Anima la imagen de BTC
+function animar_imagenbtc(){    
+    const imagen = document.querySelector('.btc_image')
+    setTimeout(() => {  // Agregar la clase "animate_btcimage" después de un breve retraso para que empiece la animacion
+        imagen.classList.add('animate_btcimage'); 
+    }, 1000); // Duración de la animación en milisegundos
+    
+    setTimeout(() => {  // Eliminar la clase "animate_btcimage" después de un breve retraso para permitir que la animación se complete
+        imagen.classList.remove('animate_btcimage');
+    }, 3000); // Duración de la animación en milisegundos 
+    animar = false
+    
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -147,6 +164,9 @@ function peticion_registro_handler(){
 
             //Vacia los campos y cierra formulario luego de guardar un movimiento nuevo
             form_reset()
+
+            //Validar que se realice la animacion
+            animar_imagenbtc()
 
             //Mostrar status luego de registrar un movimiento
             mostrar_status()
@@ -241,7 +261,7 @@ window.onload = function(){
 
     //Guardar nuevo registro
     let confirmar = document.getElementById("btn_confirmar")
-    confirmar.addEventListener("click", nuevoRegistro)
+    confirmar.addEventListener("click", nuevoRegistro) 
 
     //Mostrar formulario
     let nuevo = document.getElementById("btn_nuevo");
@@ -266,20 +286,6 @@ window.onload = function(){
     //mostrar status esta comentado para que no consuma consultas a apicoin en la carga de la pagina
     //si me lo olvide comentado, por favor saquenselo para que funcione bien :D
     mostrar_status()
-    
-    //Mostrar animacion al registrar movimiento
-    const btn = document.getElementById('btn_confirmar')
-    const imagen = document.querySelector('.btc_image')
-
-    btn.addEventListener('click', () => {          
-        setTimeout(() => {  // Agregar la clase "animar" después de un breve retraso para que empiece la animacion
-            imagen.classList.add('animate_btcimage'); 
-        }, 2000); // Duración de la animación en milisegundos
-        
-        setTimeout(() => {  // Eliminar la clase "animar" después de un breve retraso para permitir que la animación se complete
-            imagen.classList.remove('animate_btcimage');
-        }, 4000); // Duración de la animación en milisegundos 
-    });    
 }
 
 

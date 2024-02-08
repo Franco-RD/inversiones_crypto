@@ -55,9 +55,14 @@ h4{
 }
 
 
+
+/*---------------------------------------------------------------------------------------------------------*/
+
+/* ANIMACIONES */
+
 /* Configuracion para animar la imgen de BTC cuando se realiza un registro nuevo */
 
-@keyframes btcAnimation {    
+@keyframes btcAnimation {     /* Pasos de la animacion */
     0% {opacity: 100%;
         transform: rotateY(0deg);}
     11% {transform: rotateY(120deg);}
@@ -78,7 +83,7 @@ h4{
     100%{opacity: 0%;}    
 }
 
-.animate_btcimage{    /* Clase para agregar a la imagen con js y ejecutar la animacion;*/
+.animate_btcimage{    /* Clase para configurar y agregar a la imagen con js y ejecutar la animacion*/
     animation-name: btcAnimation;
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
@@ -86,7 +91,7 @@ h4{
     animation-iteration-count: 1;
 }
 
-.btc_image {
+.btc_image {  /* Configuracion de la imagen de BTC */
     opacity: 0%;
     width: 100px; 
     height: auto; 
@@ -105,6 +110,9 @@ tr:not(:first-child):hover * {
 
 
 /*---------------------------------------------------------------------------------------------------------*/
+
+/* ESTILOS DE ELEMENTOS */
+
 
 /* Estilos para la tabla y el estatus */
 .crypto_table{
@@ -161,6 +169,7 @@ tr:not(:first-child):hover * {
     grid-row: 3;
 }
 
+
 /* Estilos para ordenar los botones Invertir y Actualizar Status*/
 .btn_console{
     float: right;
@@ -195,19 +204,3 @@ tr:not(:first-child):hover * {
 #quantity_from{
     max-width: 270px;
 }
-
-
-
-/* Hacer que el formulario sea una ventana superpuesta 
-#investments_table, #form_detail {
-    position: relative;
-}
-
-#investments_table, #status, #btn_console {
-    z-index: 1;
-}
-
-#form_detail {
-    z-index: 2;
-}
-*/
