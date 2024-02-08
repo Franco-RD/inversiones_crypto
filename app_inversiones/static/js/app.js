@@ -149,7 +149,7 @@ function peticion_registro_handler(){
             form_reset()
 
             //Mostrar status luego de registrar un movimiento
-            //mostrar_status()
+            mostrar_status()
         }
         if(this.status === 200){
             alert(mensajes.mensaje)
@@ -265,7 +265,7 @@ window.onload = function(){
     //Mostrar status en carga de pantalla
     //mostrar status esta comentado para que no consuma consultas a apicoin en la carga de la pagina
     //si me lo olvide comentado, por favor saquenselo para que funcione bien :D
-    //mostrar_status()
+    mostrar_status()
     
     //Mostrar animacion al registrar movimiento
     const btn = document.getElementById('btn_confirmar')
@@ -274,11 +274,11 @@ window.onload = function(){
     btn.addEventListener('click', () => {          
         setTimeout(() => {  // Agregar la clase "animar" después de un breve retraso para que empiece la animacion
             imagen.classList.add('animate_btcimage'); 
-        }, 1000); // Duración de la animación en milisegundos
+        }, 2000); // Duración de la animación en milisegundos
         
         setTimeout(() => {  // Eliminar la clase "animar" después de un breve retraso para permitir que la animación se complete
             imagen.classList.remove('animate_btcimage');
-        }, 2000); // Duración de la animación en milisegundos 
+        }, 4000); // Duración de la animación en milisegundos 
     });    
 }
 
