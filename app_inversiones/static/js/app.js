@@ -1,6 +1,6 @@
 console.log("Funcionando")
 
-const version = "v1.2"
+const version = "v1.4"
 
 //Variables para pasar fecha y hora por separado a la db
 let fechaTransaccion = ""
@@ -83,12 +83,12 @@ function form_reset(){
     document.getElementById("form_detail").style.display="none";  
     document.getElementById("select_from").value=""
     document.getElementById("select_to").value=""
+    document.getElementById("quantity_from").value=""
     partial_form_reset()
 }
 
-//Reiniciar campos no editables (quantity_from, quantity_to, quantity_total) del formulario
-function partial_form_reset(event){
-    document.getElementById("quantity_from").value=""
+//Reiniciar campos no editables (quantity_to y quantity_total) del formulario
+function partial_form_reset(event){    
     document.getElementById("quantity_to").innerText="Tasa de cambio"
     document.getElementById("quantity_total").innerText="Total"
 }
@@ -98,11 +98,11 @@ function animar_imagenbtc(){
     const imagen = document.querySelector('.btc_image')
     setTimeout(() => {  // Agregar la clase "animate_btcimage" después de un breve retraso para que empiece la animacion
         imagen.classList.add('animate_btcimage'); 
-    }, 1000); // Duración de la animación en milisegundos
+    }, 500); // Duración de la animación en milisegundos
     
     setTimeout(() => {  // Eliminar la clase "animate_btcimage" después de un breve retraso para permitir que la animación se complete
         imagen.classList.remove('animate_btcimage');
-    }, 3000); // Duración de la animación en milisegundos 
+    }, 2500); // Duración de la animación en milisegundos 
     animar = false
     
 }
@@ -275,12 +275,15 @@ window.onload = function(){
     let cerrar = document.getElementById("btn_cerrar");
     cerrar.addEventListener("click", hideForm)
 
-    //Reiniciar campos no editables al cambiar los select de monedas
+    //Reiniciar campos no editables al cambiar los select de monedas on en el input de quantity_from
     let select_moneda_from = document.getElementById("select_from")
     select_moneda_from.addEventListener("change", partial_form_reset)
 
     let select_moneda_to = document.getElementById("select_to")
     select_moneda_to.addEventListener("change", partial_form_reset)
+
+    let input_quantity_from = document.getElementById("quantity_from")
+    input_quantity_from.addEventListener("change", partial_form_reset)
 
     //Mostrar exchage rate
     let rate = document.getElementById("button_calc")
@@ -294,8 +297,8 @@ window.onload = function(){
     mostrar_tabla_movimientos()  
 
     //Mostrar status en carga de pantalla
-    //mostrar status esta comentado para que no consuma consultas a apicoin en la carga de la pagina
-    //si me lo olvide comentado, por favor saquenselo para que funcione bien :D
+    //Comentado para que no consuma consultas a apicoin en la carga de la pagina
+    //Si me lo olvide comentado, por favor saquenselo para que funcione bien :D
     mostrar_status()
 }
 
