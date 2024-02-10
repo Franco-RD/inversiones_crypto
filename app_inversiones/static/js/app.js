@@ -83,11 +83,15 @@ function form_reset(){
     document.getElementById("form_detail").style.display="none";  
     document.getElementById("select_from").value=""
     document.getElementById("select_to").value=""
+    partial_form_reset()
+}
+
+//Reiniciar campos no editables (quantity_from, quantity_to, quantity_total) del formulario
+function partial_form_reset(event){
     document.getElementById("quantity_from").value=""
     document.getElementById("quantity_to").innerText="Tasa de cambio"
     document.getElementById("quantity_total").innerText="Total"
 }
-
 
 //Anima la imagen de BTC
 function animar_imagenbtc(){    
@@ -270,6 +274,13 @@ window.onload = function(){
     //Ocultar formulario
     let cerrar = document.getElementById("btn_cerrar");
     cerrar.addEventListener("click", hideForm)
+
+    //Reiniciar campos no editables al cambiar los select de monedas
+    let select_moneda_from = document.getElementById("select_from")
+    select_moneda_from.addEventListener("change", partial_form_reset)
+
+    let select_moneda_to = document.getElementById("select_to")
+    select_moneda_to.addEventListener("change", partial_form_reset)
 
     //Mostrar exchage rate
     let rate = document.getElementById("button_calc")
