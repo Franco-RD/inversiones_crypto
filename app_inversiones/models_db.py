@@ -76,12 +76,14 @@ def get_valor_actual():
 
 def get_status():
     #Obtiene la suma de la columna cantidad_from donde moneda_from es EUR
-    invertido = conectar_db.get_suma_moneda("cantidad_from", "moneda_from", 'EUR')
+    tuple_invertido = conectar_db.get_suma_moneda("cantidad_from", "moneda_from", 'EUR')
+    invertido = tuple_invertido[0] if tuple_invertido[0] is not None else 0
 
     #Obtiene la suma de la columna cantidad_to donde moneda_to es EUR
-    recuperado = conectar_db.get_suma_moneda("cantidad_to", "moneda_to", 'EUR')
-    
-    valor_compra = float(invertido[0]) - float(recuperado[0])
+    tuple_recuperado = conectar_db.get_suma_moneda("cantidad_to", "moneda_to", 'EUR')
+    recuperado = tuple_recuperado[0] if tuple_recuperado[0] is not None else 0
+
+    valor_compra = float(invertido) - float(recuperado)
 
     #Obtiene el saldo neto de cada cryptomoneda, lo pasa a EUR y acumula para conseguir el valor_actual
     netos_crypto = get_valor_actual()  #{'BTC': 5.0046, 'ETH': -3.551, 'SOL': 253.2116, 'ADA': 3366.9327}
@@ -89,6 +91,6 @@ def get_status():
     for item in netos_crypto:
         valor_actual += (netos_crypto[item] * get_neto_valor_actual(item))
 
-    return {"invertido": round(invertido[0], 4), "recuperado": round(recuperado[0], 4), "valor_compra": round(valor_compra, 4), "valor_actual": round(valor_actual, 4)}
+    return {"invertido": round(invertido, 4), "recuperado": round(recuperado, 4), "valor_compra": round(valor_compra, 4), "valor_actual": round(valor_actual, 4)}
 
     
