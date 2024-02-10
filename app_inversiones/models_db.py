@@ -40,6 +40,9 @@ def get_saldo_crypto(crypto_from, quantity_from):
 
         saldo = saldo_to - saldo_from
 
+        if float(saldo) == 0:
+            return False
+
         if float(saldo) >= float(quantity_from):  #Hay que ponerles float, sobre todo porque el quantity_from llega como str
             return True
         else:
